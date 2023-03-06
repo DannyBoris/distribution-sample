@@ -82,7 +82,7 @@ const DistributionForm = () => {
 
   useEffect(() => {
     if (!commonData) {
-      fetch(`https://staging-revelator.com/common/lookup/all`)
+      fetch(`https://staging-api.revelator.com/common/lookup/all`)
         .then((res) => res.json())
         .then((res) => {
           localStorage.setItem("common_data", JSON.stringify(res));
