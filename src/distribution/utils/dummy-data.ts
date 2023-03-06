@@ -22,7 +22,10 @@ export const dummy_release = (id: number): Release => ({
   releaseDate: "",
   primaryMusicStyleId: "",
   languageId: 1,
-  tracks: [dummy_track("No more", 1), dummy_track("More please", 2)],
+  tracks: [
+    dummy_track("No more", 1, "a+t"),
+    dummy_track("More please", 2, "a+t"),
+  ],
   image: {
     externalUrl: "https://picsum.photos/160/160",
     largeExternalUrl: "https://picsum.photos/440/440",
@@ -42,10 +45,9 @@ export const dummy_local = (languageId: number | string) => ({
   languageId,
 });
 
-export const dummy_track = (name: string, id: number) => ({
+export const dummy_track = (name: string, id: number, revisions: string) => ({
   name,
   id,
   tarcksLocals: [],
-  key: id + 1,
-  index: id -1,
+  revisions,
 });

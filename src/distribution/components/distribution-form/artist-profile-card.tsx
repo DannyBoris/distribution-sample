@@ -1,4 +1,4 @@
-import { GlobalOutlined } from "@ant-design/icons";
+import { GlobalOutlined, SettingOutlined } from "@ant-design/icons";
 import { Avatar, Card, Row, Space, Tooltip, Typography } from "antd";
 import DeleteButton from "../shared/delete-button";
 

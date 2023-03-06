@@ -8,6 +8,7 @@ const DeleteButton = ({ showTooltip = true, onClick, title = "Delete" }) => {
         style={{ position: "absolute", top: 0, right: 0 }}
         danger
         type="text"
+        onClick={onClick}
         icon={<DeleteOutlined onClick={onClick} />}
       ></Button>
     </Tooltip>

@@ -51,13 +51,7 @@ const SimpleHeader = () => {
             />
           </defs>
         </svg>{" "}
-        <Menu
-        
-        color="red"
-          theme="dark"
-          items={items}
-          mode="horizontal"
-        />
+        <Menu theme="dark" items={items} mode="horizontal" />
       </Row>
     </Header>
   );

@@ -1,4 +1,4 @@
-import { Release } from "../../utils/types";
+import { Release } from "../utils/types";
 import {
   Avatar,
   Card,
@@ -19,34 +19,19 @@ interface Props {
 }
 
 const ReleaseCard = ({ release }: Props) => {
-  const [loading, setloading] = useState(true);
-
-  useEffect(()=>{
-    setTimeout(() => {
-      setloading(false)
-    }, 2000);
-  },[])
   return (
     <Link to={`release/${release.release_id}`}>
       <Card onClick={() => {}} style={{ width: "100%", cursor: "pointer" }}>
         <Row justify="space-between">
           <Row gutter={25}>
-            {loading ? (
-              <Skeleton.Image active style={{ width: 190, height: 190 }} />
-            ) : (
-              <Image
-                style={{ borderRadius: 10 }}
-                src={release.image.externalUrl}
-              />
-            )}
+            <Image
+              style={{ borderRadius: 10 }}
+              src={release.image.externalUrl}
+            />
             <Col>
-              {loading ? (
-                <Skeleton active title={{ width: 500 }} />
-              ) : (
-                <Title style={{ marginTop: 0 }} level={2}>
-                  Single | {release.name}
-                </Title>
-              )}
+              <Title style={{ marginTop: 0 }} level={2}>
+                Single | {release.name}
+              </Title>
               <Title level={4}>{release.artistName}</Title>
             </Col>
           </Row>

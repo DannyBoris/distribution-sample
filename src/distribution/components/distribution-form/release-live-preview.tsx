@@ -40,7 +40,15 @@ const ReleaseLivePreview = ({
         </Space>
       </Row>
       <Button
-        style={{ background: "white", color: "black", height: 40, width: 230 }}
+        loading
+        style={{
+          margin: "0 auto",
+          background: "white",
+          color: "black",
+          height: 50,
+          width: 230,
+          borderRadius: 60,
+        }}
       >
         Submit to review
       </Button>

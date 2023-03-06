@@ -1,21 +1,9 @@
-import { DeleteOutlined, PlusCircleFilled } from "@ant-design/icons";
-import {
-  Avatar,
-  Button,
-  Card,
-  Col,
-  Form,
-  Input,
-  Radio,
-  Row,
-  Space,
-  Tooltip,
-  Typography,
-} from "antd";
+import { PlusCircleFilled } from "@ant-design/icons";
+import { Button, Card, Col, Form, Row, Space, Typography } from "antd";
 import { useState } from "react";
 import { sharedStyles } from "../../utils/constants";
 import { languageMapper } from "../../utils/mappers";
-import { Artist } from "../../utils/types";
+import DeleteButton from "../shared/delete-button";
 import FormInput from "../shared/form-input";
 import FormSelect from "../shared/form-select";
 import RadioGroup from "../shared/radio-group";
@@ -34,6 +22,7 @@ const ArtistModalContent = ({ languages, artistToUpdate, onSave }) => {
   }
 
   function handleDeleteLocal(index: number) {
+    console.log(index);
     const newLocals = [...artist?.artistLocals];
     newLocals.splice(index, 1);
     setArtist({
@@ -54,6 +43,7 @@ const ArtistModalContent = ({ languages, artistToUpdate, onSave }) => {
         onChange={(e) => setArtist({ ...artist, name: e.target.value })}
         required
         label="Artist name"
+        value={artist.name}
       />
       <Row gutter={[16, 16]}>
         <Col span={12}>
@@ -106,29 +96,38 @@ const ArtistModalContent = ({ languages, artistToUpdate, onSave }) => {
           />
         </Col>
       </Row>
-      {artist?.artistLocals.map((local, index) => (
+      {artist?.artistLocals.map((local, index: number) => (
         <Card style={{ ...sharedStyles, padding: 0 }}>
           <Row justify="space-between" align="middle" gutter={[16, 16]}>
             <Col span={12}>
-              <FormInput label="Local name" />
+              <FormInput
+                value={local.name}
+                label="Local name"
+                onChange={({ target: { value } }) => {
+                  const copy = [...artist.artistLocals];
+                  copy[index]["name"] = value;
+                  setArtist({
+                    ...artist,
+                    artistLocals: copy,
+                  });
+                }}
+              />
             </Col>
             <Col span={12}>
               <FormSelect
                 options={languages.map(languageMapper)}
                 label="Local langauge"
+                onChange={(id) => {
+                  const copy = [...artist.artistLocals];
+                  copy[index]["languageId"] = id;
+                  setArtist({
+                    ...artist,
+                    artistLocals: copy,
+                  });
+                }}
               />
             </Col>
-            <Tooltip arrow={false} title="Delete">
-              <Button
-                onClick={() => {
-                  handleDeleteLocal(index);
-                }}
-                style={{ position: "absolute", top: 0, right: 0 }}
-                danger
-                type="text"
-                icon={<DeleteOutlined />}
-              ></Button>
-            </Tooltip>
+            <DeleteButton onClick={() => handleDeleteLocal(index)} />
           </Row>
         </Card>
       ))}

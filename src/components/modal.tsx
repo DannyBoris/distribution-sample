@@ -19,12 +19,11 @@ const AppModal = ({
 }: Props) => {
   return (
     <Modal
-    onCancel={()=>setOpen(false)}
+      onCancel={() => setOpen(false)}
       destroyOnClose
-      width={fullScreen ? "100vw" : 800}
+      width={fullScreen ? "90vw" : 800}
       style={{ height: fullScreen ? "100vh" : 600 }}
       bodyStyle={{
-        height: fullScreen ? "100vh" : 600,
         overflow: "scroll",
       }}
       open={open}
@@ -34,6 +33,7 @@ const AppModal = ({
           Cancel
         </Button>,
         <Button
+          onClick={() => setOpen(false)}
           size="large"
           style={{ width: 100 }}
           htmlType="submit"

@@ -39,7 +39,7 @@ export interface Release {
   artistAppleId: string;
   artistSpotifyId: string;
   previouslyReleased: boolean;
-  upc: string;
+  upc: string | null;
   releaseDate: string;
   primaryMusicStyleId: string;
   languageId: number;
@@ -83,4 +83,5 @@ export interface Track {
   sampleRate: number;
   wav: any;
   composerContentsDTO: any[];
+  isrc: string | null;
 }

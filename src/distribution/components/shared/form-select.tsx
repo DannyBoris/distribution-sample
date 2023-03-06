@@ -2,6 +2,7 @@ import { Form, FormItemProps, Select, SelectProps } from "antd";
 
 interface customProps {
   multiSelect?: boolean;
+  customOptions?: any[];
 }
 
 type Props = FormItemProps & SelectProps & customProps;
@@ -16,10 +17,11 @@ const FormSelect = ({
   options,
   showSearch,
   help,
-  allowClear,
   multiSelect,
   dropdownRender,
   onSearch,
+  customOptions,
+  labelInValue,
 }: Props) => {
   const itemProps: FormItemProps = {
     required,
@@ -36,18 +38,19 @@ const FormSelect = ({
     options,
     optionFilterProp: "label",
     showSearch,
-    allowClear,
     dropdownRender,
     onSearch,
+    labelInValue,
   };
 
   if (multiSelect) {
     selectProps.mode = "multiple";
+    selectProps.allowClear = true;
   }
 
   return (
     <Form.Item {...itemProps}>
-      <Select {...selectProps} />
+      <Select {...selectProps}>{customOptions}</Select>
     </Form.Item>
   );
 };
